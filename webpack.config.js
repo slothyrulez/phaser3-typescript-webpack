@@ -27,10 +27,22 @@ module.exports = {
         publicPath: './dist/',
         filename: 'bundle.js'
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    chunks: "initial",
+                    test: "vendor",
+                    name: "vendor",
+                    enforce: true
+                }
+            }
+        },
+    },
     watch: true,
     plugins: [
         definePlugin,
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */ }),
+        // new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */ }),
         new HtmlWebpackPlugin({
             filename: '../index.html',
             template: './src/index.html',
